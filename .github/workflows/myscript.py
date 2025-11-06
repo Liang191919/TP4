@@ -1,0 +1,13 @@
+import os
+import sys
+
+def main():
+    bad_hash = os.environ.get("BAD_HASH")
+    good_hash = os.environ.get("GOOD_HASH")
+
+    os.system(f"git bisect start {bad_hash} {good_hash}")
+    os.system("git bisect run python manage.py test")
+    os.system("git bisect reset")
+
+if __name__ == "__main__":
+    main()
